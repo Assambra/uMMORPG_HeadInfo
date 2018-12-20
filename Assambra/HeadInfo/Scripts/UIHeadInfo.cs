@@ -41,10 +41,10 @@ public class UIHeadInfo : MonoBehaviour
         if (!player) return;
 
         // I want to use FaceCamera.cs from uMMORPG but it dosn`t detect the Canvas Renderer
-        // so i want to use this RenderExtension founded on:  https://forum.unity.com/threads/test-if-ui-element-is-visible-on-screen.276549/#post-2978773
-        // i asked the author if we can use it, but still waiting for answer 
+        // So we use this RenderExtension founded on:  https://forum.unity.com/threads/test-if-ui-element-is-visible-on-screen.276549/#post-2978773
+        // These renderer extensions were originally created by KGS. We are allowed to use it with the kind permission of the author KGS in our project.
         // Todo Do this check in a Coroutine, not every frame;
-        //isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
+        isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
 
         target = player.target;
 
@@ -70,14 +70,9 @@ public class UIHeadInfo : MonoBehaviour
 
     private void LateUpdate()
     {
-        /*
         if (isFullVisible)
         {
             transform.forward = Camera.main.transform.forward;
         }
-        */
-
-        // if you dont want to use isFullVisible
-        transform.forward = Camera.main.transform.forward;
     }
 }
