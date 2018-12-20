@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 114212051537607210}
+  thisEntity: {fileID: 114212051537607210}
   healthBar: {fileID: 1943675339170126}
   healthSlider: {fileID: 114226342012695252}
   rectTransform: {fileID: 224308106595558006}
@@ -2443,6 +2443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameHeadInfo: {fileID: 114132880456056416}
+  guildHeadInfo: {fileID: 0}
   agent: {fileID: 195547361450752834}
   proxchecker: {fileID: 114985872252373302}
   animator: {fileID: 95469409522447978}

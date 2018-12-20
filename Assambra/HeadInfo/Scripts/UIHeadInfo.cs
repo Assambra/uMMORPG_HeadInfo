@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIHeadInfo : MonoBehaviour
 {
-    public Entity self;
+    public Entity thisEntity;
     public GameObject healthBar;
     public Slider healthSlider;
     public RectTransform rectTransform;
@@ -11,7 +11,7 @@ public class UIHeadInfo : MonoBehaviour
     public Sprite targetSprite;
     public bool attackMode = false;
 
-    private Entity target;
+    private Entity playerTarget;
     private bool isFullVisible;
     private NetworkManagerMMO networkManagerMMO;
 
@@ -47,12 +47,12 @@ public class UIHeadInfo : MonoBehaviour
         // Todo Do this check in a Coroutine, not every frame;
         isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
 
-        target = player.target;
+        playerTarget = player.target;
 
-        if (target != null && target == self)
+        if (playerTarget != null && playerTarget == thisEntity)
         {
             healthBar.SetActive(true);
-            healthSlider.value = target.HealthPercent();
+            healthSlider.value = playerTarget.HealthPercent();
 
             targetImage.sprite = targetSprite;
 

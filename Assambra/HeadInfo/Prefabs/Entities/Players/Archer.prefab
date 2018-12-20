@@ -280,8 +280,6 @@ MonoBehaviour:
   nameOverlay: {fileID: 102403922260417398}
   stunnedOverlay: {fileID: 102850382433440542}
   inSafeZone: 0
-  attackMode: 0
-  tempTarget: {fileID: 0}
   chat: {fileID: 11481206}
   avatarCamera: {fileID: 20662726061508384}
   networkNavMeshAgent: {fileID: 114014746068147750}
@@ -3165,9 +3163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 11448894}
+  thisEntity: {fileID: 11448894}
   healthBar: {fileID: 1689661039135542}
-  textGuild: {fileID: 1592138243248154}
   healthSlider: {fileID: 114528711764530384}
   rectTransform: {fileID: 224730146522913622}
   targetImage: {fileID: 114138654504762278}
@@ -4016,9 +4013,9 @@ RectTransform:
   m_Father: {fileID: 224730146522913622}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224629143703048592
@@ -4071,9 +4068,9 @@ RectTransform:
   m_Father: {fileID: 224730146522913622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224708538818596018
@@ -4132,9 +4129,9 @@ RectTransform:
   m_Father: {fileID: 224730146522913622}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224894139407937010

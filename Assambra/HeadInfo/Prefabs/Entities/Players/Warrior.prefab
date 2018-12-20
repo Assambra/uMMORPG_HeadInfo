@@ -2427,9 +2427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 114673069649944956}
+  thisEntity: {fileID: 114673069649944956}
   healthBar: {fileID: 1813095032763982}
-  textGuild: {fileID: 1766763433325212}
   healthSlider: {fileID: 114264900720222714}
   rectTransform: {fileID: 224370107760728398}
   targetImage: {fileID: 114970712586765642}
@@ -2865,8 +2864,6 @@ MonoBehaviour:
   nameOverlay: {fileID: 102541016051427440}
   stunnedOverlay: {fileID: 102442261174044098}
   inSafeZone: 0
-  attackMode: 0
-  tempTarget: {fileID: 0}
   chat: {fileID: 114315852738484942}
   avatarCamera: {fileID: 20035329981608330}
   networkNavMeshAgent: {fileID: 114605708631358750}

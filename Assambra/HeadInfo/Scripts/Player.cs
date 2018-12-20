@@ -6,21 +6,11 @@ using UnityEngine.UI;
 
 public partial class Player
 {
-    public bool attackMode = false;
-    public Entity tempTarget;
-
+    private bool attackMode = false;
+    private Entity lastKnownTarget;
 
     void UpdateClient_HeadInfo()
     {
-        if (currentSkill == -1 && useSkillWhenCloser == -1 && pendingSkill == -1)
-            attackMode = false;
-
-        if (currentSkill != -1 || useSkillWhenCloser != -1 || pendingSkill != -1)
-        {
-            tempTarget = target;
-            attackMode = true;
-        }
-        
         AttackTarget();
 
         if(attackMode)
@@ -32,14 +22,23 @@ public partial class Player
             if(target != null)
                 target.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
             else
-                if(tempTarget != null)
-                    tempTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
+                if(lastKnownTarget != null)
+                    lastKnownTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
         }
     }
 
     [Client]
     void AttackTarget()
     {
+        if (currentSkill == -1 && useSkillWhenCloser == -1 && pendingSkill == -1)
+            attackMode = false;
+
+        if (currentSkill != -1 || useSkillWhenCloser != -1 || pendingSkill != -1)
+        {
+            lastKnownTarget = target;
+            attackMode = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && !attackMode)   
         {
             if(target != null && target != this && target != activePet)

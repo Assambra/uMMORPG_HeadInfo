@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameHeadInfo: {fileID: 114095248204468224}
+  guildHeadInfo: {fileID: 0}
   agent: {fileID: 19573404}
   proxchecker: {fileID: 11477838}
   animator: {fileID: 9513362}
@@ -3094,7 +3095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  self: {fileID: 11474358}
+  thisEntity: {fileID: 11474358}
   healthBar: {fileID: 1360117259900202}
   healthSlider: {fileID: 114672191731953856}
   rectTransform: {fileID: 224555305280502168}
