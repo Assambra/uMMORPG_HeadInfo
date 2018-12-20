@@ -707,7 +707,6 @@ GameObject:
   - component: {fileID: 224568370457364760}
   - component: {fileID: 223086137604346572}
   - component: {fileID: 114305836313954360}
-  - component: {fileID: 114196132937743878}
   m_Layer: 5
   m_Name: CanvasHeadInfo
   m_TagString: Untagged
@@ -2432,22 +2431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 195547361450752834}
---- !u!114 &114196132937743878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673091537033416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &114212051537607210
 MonoBehaviour:
   m_ObjectHideFlags: 1
