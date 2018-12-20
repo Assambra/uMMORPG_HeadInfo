@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 public partial class Player
 {
     public bool attackMode = false;
     public Entity tempTarget;
+
 
     void UpdateClient_HeadInfo()
     {
@@ -33,7 +35,6 @@ public partial class Player
                 if(tempTarget != null)
                     tempTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
         }
-        
     }
 
     [Client]

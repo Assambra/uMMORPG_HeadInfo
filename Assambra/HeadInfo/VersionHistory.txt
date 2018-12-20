@@ -21,5 +21,6 @@ v0.1
 v0.2
 	using the RendererExtentions to check if the HeadInfo panel in the view of the Camera and needed to face the camera;
 	Now the HeadInfo panel dosn`t block mouse clicks if you want to select something behind it
+	The guild names are now displayed in the panel as well
 	
 	

@@ -40,6 +40,7 @@ public class UIHeadInfo : MonoBehaviour
         Player player = Player.localPlayer;
         if (!player) return;
 
+
         // I want to use FaceCamera.cs from uMMORPG but it dosn`t detect the Canvas Renderer
         // So we use this RenderExtension founded on:  https://forum.unity.com/threads/test-if-ui-element-is-visible-on-screen.276549/#post-2978773
         // These renderer extensions were originally created by KGS. We are allowed to use it with the kind permission of the author KGS in our project.
