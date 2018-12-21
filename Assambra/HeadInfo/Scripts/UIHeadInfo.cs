@@ -12,6 +12,7 @@ public class UIHeadInfo : MonoBehaviour
 
     public bool attackMode = false;
     public bool selectMode = false;
+    public bool isPlayer = false;
 
     private bool isFullVisible;
     private NetworkManagerMMO networkManagerMMO;
@@ -47,12 +48,21 @@ public class UIHeadInfo : MonoBehaviour
         // Todo Do this check in a Coroutine, not every frame;
         isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
 
+        if(isPlayer)
+        {
+            healthBar.SetActive(true);
+            healthSlider.value = thisEntity.HealthPercent();
+        }
+
         if (selectMode)
         {
             targetImage.sprite = targetSprite;
 
-            healthBar.SetActive(true);
-            healthSlider.value = thisEntity.HealthPercent();
+            if(!isPlayer)
+            {
+                healthBar.SetActive(true);
+                healthSlider.value = thisEntity.HealthPercent();
+            }
 
             if (attackMode)
                 targetImage.color = Color.red;
@@ -71,10 +81,11 @@ public class UIHeadInfo : MonoBehaviour
         }
     }
 
-    public void Clear()
+    private void Clear()
     {
         targetImage.sprite = null;
         targetImage.color = Color.clear;
-        healthBar.SetActive(false);
+        if(!isPlayer)
+            healthBar.SetActive(false);
     }
 }

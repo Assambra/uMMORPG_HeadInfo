@@ -8,6 +8,12 @@ public partial class Player
     private Entity lastKnownTarget = null;
     private Entity lastSelectedTarget = null;
 
+    void Start_HeadInfo()
+    {
+        if (isLocalPlayer)
+            gameObject.GetComponentInChildren<UIHeadInfo>().isPlayer = true;
+    }
+
     void UpdateClient_HeadInfo()
     {
         AttackTarget();
