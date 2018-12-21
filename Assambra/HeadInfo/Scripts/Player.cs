@@ -1,29 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Mirror;
-using UnityEngine.UI;
 
 public partial class Player
 {
     private bool attackMode = false;
-    private Entity lastKnownTarget;
+    private bool selectMode = false;
+    private Entity lastKnownTarget = null;
+    private Entity lastSelectedTarget = null;
 
     void UpdateClient_HeadInfo()
     {
         AttackTarget();
 
-        if(attackMode)
+        if (target)
+        {
+            if(!selectMode)
+            {
+                lastSelectedTarget = target;
+                selectMode = true;
+            }
+            else
+            {
+                target.gameObject.GetComponentInChildren<UIHeadInfo>().selectMode = true;
+            }
+
+            if(target != lastSelectedTarget)
+            {
+                lastSelectedTarget.gameObject.GetComponentInChildren<UIHeadInfo>().selectMode = false;
+                selectMode = false;
+            }
+        }
+
+        if (attackMode)
         {
             target.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = true;
         }
         else
         {
-            if(target != null)
+            if (target != null)
                 target.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
             else
-                if(lastKnownTarget != null)
-                    lastKnownTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
+                if (lastKnownTarget != null)
+                lastKnownTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
         }
     }
 

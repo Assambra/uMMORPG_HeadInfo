@@ -9,9 +9,10 @@ public class UIHeadInfo : MonoBehaviour
     public RectTransform rectTransform;
     public Image targetImage;
     public Sprite targetSprite;
-    public bool attackMode = false;
 
-    private Entity playerTarget;
+    public bool attackMode = false;
+    public bool selectMode = false;
+
     private bool isFullVisible;
     private NetworkManagerMMO networkManagerMMO;
 
@@ -40,21 +41,18 @@ public class UIHeadInfo : MonoBehaviour
         Player player = Player.localPlayer;
         if (!player) return;
 
-
         // I want to use FaceCamera.cs from uMMORPG but it dosn`t detect the Canvas Renderer
         // So we use this RenderExtension founded on:  https://forum.unity.com/threads/test-if-ui-element-is-visible-on-screen.276549/#post-2978773
         // These renderer extensions were originally created by KGS. We are allowed to use it with the kind permission of the author KGS in our project.
         // Todo Do this check in a Coroutine, not every frame;
         isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
 
-        playerTarget = player.target;
-
-        if (playerTarget != null && playerTarget == thisEntity)
+        if (selectMode)
         {
-            healthBar.SetActive(true);
-            healthSlider.value = playerTarget.HealthPercent();
-
             targetImage.sprite = targetSprite;
+
+            healthBar.SetActive(true);
+            healthSlider.value = thisEntity.HealthPercent();
 
             if (attackMode)
                 targetImage.color = Color.red;
@@ -62,11 +60,7 @@ public class UIHeadInfo : MonoBehaviour
                 targetImage.color = Color.white;
         }
         else
-        {
-            targetImage.sprite = null;
-            targetImage.color = Color.clear;
-            healthBar.SetActive(false);
-        }
+            Clear();
     }
 
     private void LateUpdate()
@@ -75,5 +69,12 @@ public class UIHeadInfo : MonoBehaviour
         {
             transform.forward = Camera.main.transform.forward;
         }
+    }
+
+    public void Clear()
+    {
+        targetImage.sprite = null;
+        targetImage.color = Color.clear;
+        healthBar.SetActive(false);
     }
 }
