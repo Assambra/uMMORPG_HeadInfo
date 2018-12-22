@@ -51,6 +51,14 @@ public partial class Player
         }
     }
 
+    protected override void UpdateHeadInfo()
+    {
+        base.UpdateHeadInfo();
+
+        if (guildHeadInfo != null)
+            guildHeadInfo.text = guildName != "" ? guildOverlayPrefix + guildName + guildOverlaySuffix : "";
+    }
+
     [Client]
     void AttackTarget()
     {

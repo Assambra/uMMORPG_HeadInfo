@@ -23,5 +23,6 @@ v0.2
 	Now the HeadInfo panel dosn`t block mouse clicks if you want to select something behind it
 	The guild names are now displayed in the panel as well
 	The HealthBar will now be permanently displayed to the player character
+	No uMMORPG core changes needed anymore
 	
 	
