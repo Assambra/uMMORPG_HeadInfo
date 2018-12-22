@@ -4,3 +4,5 @@ HeadInfo shows the name of the entity in a WorldSpace Canvas/Panel instead the t
 1. The name is always displayed.
 2. The target is selected, a white target icon and the health bar is displayed.
 3. The target is attacked by the player, the target icon changes color to red and the health bar is still displayed.
+
+No uMMORPG core changes needed
