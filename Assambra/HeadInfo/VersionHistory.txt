@@ -24,9 +24,10 @@ v0.2
 	The guild names are now displayed in the panel as well;
 	The HealthBar will now be permanently displayed to the player character;
 	No uMMORPG core changes needed anymore;
-v0.3	
-	Now easier to use with own prefabs, reduce the steps to integrate the HeadInfo panel.
-	fixed some visual bug with a gap between Name and Healthbar if the player is not in a guild, 
-	also if join and leave a guild is now showing right;
+
+v0.3	Now easier to use with own prefabs, reduce the steps to integrate the HeadInfo panel.
+	Fixed some visual bug with a gap between Name and Healthbar if the player is not in a guild, also if join or leave a guild is now showing right;
 	You can now choose if the Player always should display the healthBar thrue headInfo.AlwaysShowPlayerHealth = true;
+	Massiv overhault the code, encapsulate the HeadInfo; variable changes for better readability.
+	reduce the amount to zero for GetComponent<>() in the update loop;
 	
