@@ -4,25 +4,71 @@ using UnityEngine.UI;
 public class UIHeadInfo : MonoBehaviour
 {
     public Entity thisEntity;
-    public GameObject healthBar;
-    public Slider healthSlider;
-    public RectTransform rectTransform;
-    public Image targetImage;
+    public GameObject headInfoPanel;
+    public GameObject entityNamePrefab;
+    public GameObject guildNamePrefab;
+    public GameObject healthBarPrefab;
+    public Image headInfoPanelImage;
     public Sprite targetSprite;
 
-    public bool attackMode = false;
-    public bool selectMode = false;
-    public bool isPlayer = false;
+    /// <summary>
+    /// The name of the Entity
+    /// </summary>
+    public string EntityName { set { entityName = value; } }
+    /// <summary>
+    /// The guild name of the entity
+    /// </summary>
+    public string GuildName { set { guildName = value; } }
+    /// <summary>
+    /// Sets the select mode and changes the panel image to targetSprite and set headInfoPanelImage color to white
+    /// </summary>
+    public bool SelectMode { set { selectMode = value; } }
+    /// <summary>
+    /// Sets the attack mode and changes the headInfoPanelImage color to red
+    /// </summary>
+    public bool AttackMode { set { attackMode = value; } }
+    /// <summary>
+    /// Set this to true for a local player
+    /// </summary>
+    public bool IsPlayer { set { isPlayer = value; } }
+    /// <summary>
+    /// Whether the player health bar should always be displayed, default true
+    /// </summary>
+    public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
 
-    private bool isFullVisible;
+    private string entityName = "";
+    private string guildName = "";
+    private bool attackMode = false;
+    private bool selectMode = false;
+    private bool isPlayer = false;
+    private bool alwaysShowPlayerHealth = true;
+
     private NetworkManagerMMO networkManagerMMO;
+    private RectTransform headInfoPanelRectTransform;
+    private bool isFullVisible;
+
+    private GameObject goEntityName;
+    private GameObject goGuildName;
+    private GameObject goHealthBar;
+
+    private Text entityNameText;
+    private Text guildNameText;
+    private Slider healthBarSlider;
 
     private void Start()
     {
         networkManagerMMO = FindObjectOfType<NetworkManagerMMO>();
+        headInfoPanelRectTransform = headInfoPanel.GetComponent<RectTransform>();
 
-        targetImage.sprite = null;
-        targetImage.color = Color.clear;
+        headInfoPanelImage.sprite = null;
+        headInfoPanelImage.color = Color.clear;
+
+        goEntityName = InstantiateHeadInfoPrefab(entityNamePrefab, headInfoPanel.transform);
+        entityNameText = goEntityName.GetComponent<Text>();
+        goGuildName = InstantiateHeadInfoPrefab(guildNamePrefab, headInfoPanel.transform);
+        guildNameText = goGuildName.GetComponent<Text>();
+        goHealthBar = InstantiateHeadInfoPrefab(healthBarPrefab, headInfoPanel.transform);
+        healthBarSlider = goHealthBar.GetComponent<Slider>();
     }
 
     void Update ()
@@ -31,12 +77,11 @@ public class UIHeadInfo : MonoBehaviour
         {
             // Face the Panel to the Camera,  without a isFullVisible check 
             transform.forward = Camera.main.transform.forward;
-            // Also set healthbar inactive because if we do this in the Start() function it get problems with the Healtbar position (maybe a Content Size Fitter problem).
-            // The Problem occours if the Player spawned on the Server and select a target then the health bar position is wrong; 
-            if (healthBar.activeSelf)
-            {
-                healthBar.SetActive(false);
-            }
+
+            goGuildName.SetActive(false);
+            goHealthBar.SetActive(false);
+
+            entityNameText.text = entityName;
         }
 
         Player player = Player.localPlayer;
@@ -46,28 +91,40 @@ public class UIHeadInfo : MonoBehaviour
         // So we use this RenderExtension founded on:  https://forum.unity.com/threads/test-if-ui-element-is-visible-on-screen.276549/#post-2978773
         // These renderer extensions were originally created by KGS. We are allowed to use it with the kind permission of the author KGS in our project.
         // Todo Do this check in a Coroutine, not every frame;
-        isFullVisible = rectTransform.IsVisibleFrom(Camera.main);
+        isFullVisible = headInfoPanelRectTransform.IsVisibleFrom(Camera.main);
 
-        if(isPlayer)
+        entityNameText.text = entityName;
+
+        if(guildName != "")
         {
-            healthBar.SetActive(true);
-            healthSlider.value = thisEntity.HealthPercent();
+            goGuildName.SetActive(true);
+            guildNameText.text = guildName;
+        }
+        else
+        {
+            goGuildName.SetActive(false);
+        }
+
+        if(isPlayer && alwaysShowPlayerHealth)
+        {
+            goHealthBar.SetActive(true);
+            healthBarSlider.value = thisEntity.HealthPercent();
         }
 
         if (selectMode)
         {
-            targetImage.sprite = targetSprite;
+            headInfoPanelImage.sprite = targetSprite;
 
-            if(!isPlayer)
+            if(!isPlayer || !alwaysShowPlayerHealth)
             {
-                healthBar.SetActive(true);
-                healthSlider.value = thisEntity.HealthPercent();
+                goHealthBar.SetActive(true);
+                healthBarSlider.value = thisEntity.HealthPercent();
             }
 
             if (attackMode)
-                targetImage.color = Color.red;
+                headInfoPanelImage.color = Color.red;
             else
-                targetImage.color = Color.white;
+                headInfoPanelImage.color = Color.white;
         }
         else
             Clear();
@@ -81,11 +138,21 @@ public class UIHeadInfo : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reset the HeadInfo Panel to default
+    /// </summary>
     private void Clear()
     {
-        targetImage.sprite = null;
-        targetImage.color = Color.clear;
-        if(!isPlayer)
-            healthBar.SetActive(false);
+        headInfoPanelImage.sprite = null;
+        headInfoPanelImage.color = Color.clear;
+        if(!isPlayer || !alwaysShowPlayerHealth)
+            goHealthBar.SetActive(false);
+    }
+
+    private GameObject InstantiateHeadInfoPrefab(GameObject prefab, Transform parent)
+    {
+        GameObject go = Instantiate(prefab, parent);
+
+        return go;
     }
 }

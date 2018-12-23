@@ -11,7 +11,10 @@ public partial class Player
     void Start_HeadInfo()
     {
         if (isLocalPlayer)
-            gameObject.GetComponentInChildren<UIHeadInfo>().isPlayer = true;
+        {
+            headInfo.IsPlayer = true;
+            headInfo.AlwaysShowPlayerHealth = true;
+        }
     }
 
     void UpdateClient_HeadInfo()
@@ -27,27 +30,27 @@ public partial class Player
             }
             else
             {
-                target.gameObject.GetComponentInChildren<UIHeadInfo>().selectMode = true;
+                target.headInfo.SelectMode = true;
             }
 
             if(target != lastSelectedTarget)
             {
-                lastSelectedTarget.gameObject.GetComponentInChildren<UIHeadInfo>().selectMode = false;
+                lastSelectedTarget.headInfo.SelectMode = false;
                 selectMode = false;
             }
         }
 
         if (attackMode)
         {
-            target.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = true;
+            target.headInfo.AttackMode = true;
         }
         else
         {
             if (target != null)
-                target.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
+                target.headInfo.AttackMode = false;
             else
                 if (lastKnownTarget != null)
-                lastKnownTarget.gameObject.GetComponentInChildren<UIHeadInfo>().attackMode = false;
+                lastKnownTarget.headInfo.AttackMode = false;
         }
     }
 
@@ -55,8 +58,8 @@ public partial class Player
     {
         base.UpdateHeadInfo();
 
-        if (guildHeadInfo != null)
-            guildHeadInfo.text = guildName != "" ? guildOverlayPrefix + guildName + guildOverlaySuffix : "";
+        if (headInfo != null)
+            headInfo.GuildName = guildName != "" ? guildOverlayPrefix + guildName + guildOverlaySuffix : "";
     }
 
     [Client]

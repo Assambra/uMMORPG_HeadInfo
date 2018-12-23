@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public partial class Entity
 {
     [Header("Head Info")]
-    public Text nameHeadInfo;
-    public Text guildHeadInfo;
+    public UIHeadInfo headInfo;
+
 
     void Update_HeadInfo()
     {
@@ -14,7 +14,7 @@ public partial class Entity
 
     protected virtual void UpdateHeadInfo()
     {
-        if (nameHeadInfo != null)
-            nameHeadInfo.text = name;
+        if (headInfo != null)
+            headInfo.EntityName = name;
     }
 }

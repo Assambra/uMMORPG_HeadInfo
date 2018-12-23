@@ -20,9 +20,13 @@ v0.1
 
 v0.2
 	using the RendererExtentions to check if the HeadInfo panel in the view of the Camera and needed to face the camera;
-	Now the HeadInfo panel dosn`t block mouse clicks if you want to select something behind it
-	The guild names are now displayed in the panel as well
-	The HealthBar will now be permanently displayed to the player character
-	No uMMORPG core changes needed anymore
-	
+	Now the HeadInfo panel dosn`t block mouse clicks if you want to select something behind it;
+	The guild names are now displayed in the panel as well;
+	The HealthBar will now be permanently displayed to the player character;
+	No uMMORPG core changes needed anymore;
+v0.3	
+	Now easier to use with own prefabs, reduce the steps to integrate the HeadInfo panel.
+	fixed some visual bug with a gap between Name and Healthbar if the player is not in a guild, 
+	also if join and leave a guild is now showing right;
+	You can now choose if the Player always should display the healthBar thrue headInfo.AlwaysShowPlayerHealth = true;
 	
