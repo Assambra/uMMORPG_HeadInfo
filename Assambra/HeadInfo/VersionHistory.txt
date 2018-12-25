@@ -30,4 +30,5 @@ v0.3	Now easier to use with own prefabs, reduce the steps to integrate the HeadI
 	You can now choose if the Player always should display the healthBar thrue headInfo.AlwaysShowPlayerHealth = true;
 	Massiv overhault the code, encapsulate the HeadInfo; variable changes for better readability.
 	reduce the amount to zero for GetComponent<>() in the update loop;
-	
+
+v0.4	Now the panel position will automatically be adjusted to the entity size even during the runtime of the game, for example with buffs that change the size of the entity

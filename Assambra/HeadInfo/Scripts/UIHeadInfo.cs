@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class UIHeadInfo : MonoBehaviour
 {
+    public float adjustmentHeadInfoPositionY = 0.4f;
     public Entity thisEntity;
     public GameObject headInfoPanel;
     public GameObject entityNamePrefab;
@@ -10,7 +11,7 @@ public class UIHeadInfo : MonoBehaviour
     public GameObject healthBarPrefab;
     public Image headInfoPanelImage;
     public Sprite targetSprite;
-
+    
     /// <summary>
     /// The name of the Entity
     /// </summary>
@@ -55,8 +56,14 @@ public class UIHeadInfo : MonoBehaviour
     private Text guildNameText;
     private Slider healthBarSlider;
 
+    private GameObject canvasHeadInfo;
+    private CapsuleCollider capsuleCollider;
+    private float scaleY;
+
     private void Start()
     {
+        canvasHeadInfo = gameObject.transform.parent.gameObject;
+        capsuleCollider = thisEntity.collider.GetComponent<CapsuleCollider>();
         networkManagerMMO = FindObjectOfType<NetworkManagerMMO>();
         headInfoPanelRectTransform = headInfoPanel.GetComponent<RectTransform>();
 
@@ -69,12 +76,17 @@ public class UIHeadInfo : MonoBehaviour
         guildNameText = goGuildName.GetComponent<Text>();
         goHealthBar = InstantiateHeadInfoPrefab(healthBarPrefab, headInfoPanel.transform);
         healthBarSlider = goHealthBar.GetComponent<Slider>();
+
     }
 
     void Update ()
     {
         if(networkManagerMMO.state == NetworkState.Lobby)
         {
+            scaleY = thisEntity.transform.localScale.y;
+            float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
+            canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
+
             // Face the Panel to the Camera,  without a isFullVisible check 
             transform.forward = Camera.main.transform.forward;
 
@@ -93,9 +105,16 @@ public class UIHeadInfo : MonoBehaviour
         // Todo Do this check in a Coroutine, not every frame;
         isFullVisible = headInfoPanelRectTransform.IsVisibleFrom(Camera.main);
 
+        if (scaleY != thisEntity.transform.localScale.y)
+        {
+            scaleY = thisEntity.transform.localScale.y;
+            float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
+            canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
+        }
+
         entityNameText.text = entityName;
 
-        if(guildName != "")
+        if (guildName != "")
         {
             goGuildName.SetActive(true);
             guildNameText.text = guildName;

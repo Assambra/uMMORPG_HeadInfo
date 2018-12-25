@@ -2859,6 +2859,9 @@ MonoBehaviour:
     type: 2}
   headInfoPanelImage: {fileID: 114785565536154790}
   targetSprite: {fileID: 21300000, guid: 8335770f2b63ba54c980795b9849e16f, type: 3}
+  canvasHeadInfo: {fileID: 1450570887378282}
+  capsuleCollider: {fileID: 136955851342611990}
+  adjustmentHeadInfoPosition: 0.4
 --- !u!114 &114741553386820212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3500,7 +3503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224720831561372104
