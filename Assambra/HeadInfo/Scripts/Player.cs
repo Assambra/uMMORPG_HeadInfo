@@ -3,6 +3,11 @@ using Mirror;
 
 public partial class Player
 {
+    public Color nameDefaultColor = Color.white;
+    public Color nameOffenderColor = Color.magenta;
+    public Color nameMurdererColor = Color.red;
+    public Color namePartyColor = new Color(0.341f, 0.965f, 0.702f);
+
     private bool attackMode = false;
     private bool selectMode = false;
     private Entity lastKnownTarget = null;
@@ -57,6 +62,23 @@ public partial class Player
     protected override void UpdateHeadInfo()
     {
         base.UpdateHeadInfo();
+
+        // find local player (null while in character selection)
+        if (localPlayer != null)
+        {
+            // note: murderer has higher priority (a player can be a murderer and an
+            // offender at the same time)
+            if (IsMurderer())
+                headInfo.EntityNameColor = nameMurdererColor;
+            else if (IsOffender())
+                headInfo.EntityNameColor = nameOffenderColor;
+            // member of the same party
+            else if (localPlayer.InParty() && localPlayer.party.GetMemberIndex(name) != -1)
+                headInfo.EntityNameColor = namePartyColor;
+            // otherwise default
+            else
+                headInfo.EntityNameColor = nameDefaultColor;
+        }
 
         if (headInfo != null)
             headInfo.GuildName = guildName != "" ? guildOverlayPrefix + guildName + guildOverlaySuffix : "";

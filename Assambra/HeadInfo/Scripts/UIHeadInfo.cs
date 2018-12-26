@@ -17,6 +17,10 @@ public class UIHeadInfo : MonoBehaviour
     /// </summary>
     public string EntityName { set { entityName = value; } }
     /// <summary>
+    /// To change the color of the entities name
+    /// </summary>
+    public Color EntityNameColor { set { entityNameColor = value; } }
+    /// <summary>
     /// The guild name of the entity
     /// </summary>
     public string GuildName { set { guildName = value; } }
@@ -38,6 +42,7 @@ public class UIHeadInfo : MonoBehaviour
     public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
 
     private string entityName = "";
+    private Color entityNameColor;
     private string guildName = "";
     private bool attackMode = false;
     private bool selectMode = false;
@@ -113,6 +118,7 @@ public class UIHeadInfo : MonoBehaviour
         }
 
         entityNameText.text = entityName;
+        entityNameText.color = entityNameColor;
 
         if (guildName != "")
         {
