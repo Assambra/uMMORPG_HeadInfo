@@ -42,7 +42,7 @@ public class UIHeadInfo : MonoBehaviour
     public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
 
     private string entityName = "";
-    private Color entityNameColor;
+    private Color entityNameColor = Color.white;
     private string guildName = "";
     private bool attackMode = false;
     private bool selectMode = false;
@@ -81,7 +81,6 @@ public class UIHeadInfo : MonoBehaviour
         guildNameText = goGuildName.GetComponent<Text>();
         goHealthBar = InstantiateHeadInfoPrefab(healthBarPrefab, headInfoPanel.transform);
         healthBarSlider = goHealthBar.GetComponent<Slider>();
-
     }
 
     void Update ()
