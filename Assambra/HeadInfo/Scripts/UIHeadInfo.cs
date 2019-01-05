@@ -3,17 +3,22 @@ using UnityEngine.UI;
 
 public class UIHeadInfo : MonoBehaviour
 {
-    public float adjustmentHeadInfoPositionY = 0.4f;
+    // Entity
     public Entity thisEntity;
+    // Automatic head info position
+    public float adjustmentHeadInfoPositionY = 0.4f;
+    public GameObject model3D;
+    //Panel stuff
     public GameObject headInfoPanel;
+    public Image headInfoPanelImage;
+    public Sprite targetSprite;
+    // Prefabs
     public GameObject questSignPrefab;
     public GameObject stunnedPrefab;
     public GameObject entityNamePrefab;
     public GameObject guildNamePrefab;
     public GameObject healthBarPrefab;
-    public Image headInfoPanelImage;
-    public Sprite targetSprite;
-    
+
     /// <summary>
     /// The quest sign for npc entities
     /// </summary>
@@ -45,26 +50,26 @@ public class UIHeadInfo : MonoBehaviour
     /// <summary>
     /// Set this to true for a local player
     /// </summary>
-    public bool IsPlayer { set { isPlayer = value; } }
+    public bool IsLocalPlayer { set { isLocalPlayer = value; } }
     /// <summary>
-    /// Set this to true for a Npc entity
+    /// Set this to true for a npc entity
     /// </summary>
     public bool IsNpc { set { isNpc = value; } }
     /// <summary>
     /// Whether the player health bar should always be displayed, default true
     /// </summary>
-    public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
+    public bool AlwaysShowHealth { set { alwaysShowHealth = value; } }
 
     private string questSign = "";
     private bool isStunned = false;
     private string entityName = "";
     private Color entityNameColor = Color.white;
     private string guildName = "";
-    private bool attackMode = false;
     private bool selectMode = false;
-    private bool isPlayer = false;
+    private bool attackMode = false;
+    private bool isLocalPlayer = false;
     private bool isNpc = false;
-    private bool alwaysShowPlayerHealth = true;
+    private bool alwaysShowHealth = false;
 
     private NetworkManagerMMO networkManagerMMO;
     private RectTransform headInfoPanelRectTransform;
@@ -112,7 +117,8 @@ public class UIHeadInfo : MonoBehaviour
     {
         if(networkManagerMMO.state == NetworkState.Lobby)
         {
-            scaleY = thisEntity.transform.localScale.y;
+            // Set the Y position of the HeadInfo panel
+            scaleY = model3D.transform.localScale.y;
             float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
             canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
 
@@ -135,9 +141,10 @@ public class UIHeadInfo : MonoBehaviour
         // Todo Do this check in a Coroutine, not every frame;
         isFullVisible = headInfoPanelRectTransform.IsVisibleFrom(Camera.main);
 
+        // Set the Y position of the HeadInfo panel
         if (scaleY != thisEntity.transform.localScale.y)
         {
-            scaleY = thisEntity.transform.localScale.y;
+            scaleY = model3D.transform.localScale.y;
             float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
             canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
         }
@@ -145,25 +152,25 @@ public class UIHeadInfo : MonoBehaviour
         if (isNpc)
             questSignText.text = questSign;
 
-        if (isStunned)
-            goStunned.SetActive(true);
-        else
-            goStunned.SetActive(false);
+        goStunned.SetActive(isStunned);
 
         entityNameText.text = entityName;
         entityNameText.color = entityNameColor;
 
         if (guildName != "")
         {
-            goGuildName.SetActive(true);
+            if(!goGuildName.activeSelf)
+                goGuildName.SetActive(true);
+
             guildNameText.text = guildName;
         }
         else
         {
-            goGuildName.SetActive(false);
+            if (goGuildName.activeSelf)
+                goGuildName.SetActive(false);
         }
 
-        if(isPlayer && alwaysShowPlayerHealth)
+        if (alwaysShowHealth)
         {
             goHealthBar.SetActive(true);
             healthBarSlider.value = thisEntity.HealthPercent();
@@ -173,7 +180,7 @@ public class UIHeadInfo : MonoBehaviour
         {
             headInfoPanelImage.sprite = targetSprite;
 
-            if(!isPlayer || !alwaysShowPlayerHealth)
+            if (!alwaysShowHealth)
             {
                 goHealthBar.SetActive(true);
                 healthBarSlider.value = thisEntity.HealthPercent();
@@ -203,7 +210,8 @@ public class UIHeadInfo : MonoBehaviour
     {
         headInfoPanelImage.sprite = null;
         headInfoPanelImage.color = Color.clear;
-        if(!isPlayer || !alwaysShowPlayerHealth)
+
+        if (!alwaysShowHealth)
             goHealthBar.SetActive(false);
     }
 

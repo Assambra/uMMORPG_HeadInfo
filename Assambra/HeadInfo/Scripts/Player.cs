@@ -10,6 +10,7 @@ public partial class Player
 
     private bool attackMode = false;
     private bool selectMode = false;
+
     private Entity lastKnownTarget = null;
     private Entity lastSelectedTarget = null;
 
@@ -17,8 +18,7 @@ public partial class Player
     {
         if (isLocalPlayer)
         {
-            headInfo.IsPlayer = true;
-            headInfo.AlwaysShowPlayerHealth = true;
+            headInfo.IsLocalPlayer = true;
         }
     }
 

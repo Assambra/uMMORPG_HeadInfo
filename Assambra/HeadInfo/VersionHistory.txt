@@ -37,3 +37,5 @@ v0.4
 	The status party, offender and murderer are now displayed in color as in the original uMMORPG.
 	The quest sign of the npc entities is now displayed via the head info.
 	Stunned is now displayed for all entities via head info(except Pet that will come in the next update).
+	Pets now show the owner's name via the Head Info.
+	All entities get a public variable to decide if they should permanently display the healthbar.

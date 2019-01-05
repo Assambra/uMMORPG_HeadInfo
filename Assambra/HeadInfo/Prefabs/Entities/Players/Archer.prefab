@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adjustmentHeadInfoPositionY: 0.4
   thisEntity: {fileID: 11448894}
+  model3D: {fileID: 1461325308561616}
   headInfoPanel: {fileID: 1382533218652330}
   questSignPrefab: {fileID: 0}
   stunnedPrefab: {fileID: 1210692136199252, guid: b7f6a405288e864488577ed37d947c9f,

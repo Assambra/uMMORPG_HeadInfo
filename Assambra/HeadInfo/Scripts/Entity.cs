@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public partial class Entity
 {
     [Header("Head Info")]
+    public bool AlwaysShowHealth = true;
     public UIHeadInfo headInfo;
-
-    private bool isNpc = false;
+    
     private Npc npc;
 
     void Awake_HeadInfo()
@@ -23,6 +23,8 @@ public partial class Entity
 
     protected virtual void UpdateHeadInfo()
     {
+        headInfo.AlwaysShowHealth = AlwaysShowHealth;
+
         if (headInfo != null)
             headInfo.EntityName = name;
         if(headInfo != null)
