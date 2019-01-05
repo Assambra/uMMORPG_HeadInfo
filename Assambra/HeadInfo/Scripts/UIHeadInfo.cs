@@ -7,6 +7,7 @@ public class UIHeadInfo : MonoBehaviour
     public Entity thisEntity;
     public GameObject headInfoPanel;
     public GameObject questSignPrefab;
+    public GameObject stunnedPrefab;
     public GameObject entityNamePrefab;
     public GameObject guildNamePrefab;
     public GameObject healthBarPrefab;
@@ -17,6 +18,10 @@ public class UIHeadInfo : MonoBehaviour
     /// The quest sign for npc entities
     /// </summary>
     public string QuestSign { set { questSign = value; } }
+    /// <summary>
+    /// Entity stunned
+    /// </summary>
+    public bool IsStunned { set { isStunned = value; } } 
     /// <summary>
     /// The name of the Entity
     /// </summary>
@@ -51,6 +56,7 @@ public class UIHeadInfo : MonoBehaviour
     public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
 
     private string questSign = "";
+    private bool isStunned = false;
     private string entityName = "";
     private Color entityNameColor = Color.white;
     private string guildName = "";
@@ -65,6 +71,7 @@ public class UIHeadInfo : MonoBehaviour
     private bool isFullVisible;
 
     private GameObject goQuestSign;
+    private GameObject goStunned;
     private GameObject goEntityName;
     private GameObject goGuildName;
     private GameObject goHealthBar;
@@ -92,6 +99,7 @@ public class UIHeadInfo : MonoBehaviour
             goQuestSign = InstantiateHeadInfoPrefab(questSignPrefab, headInfoPanel.transform.parent.gameObject.transform);
             questSignText = goQuestSign.GetComponent<Text>();
         }
+        goStunned = InstantiateHeadInfoPrefab(stunnedPrefab, headInfoPanel.transform.parent.gameObject.transform);
         goEntityName = InstantiateHeadInfoPrefab(entityNamePrefab, headInfoPanel.transform);
         entityNameText = goEntityName.GetComponent<Text>();
         goGuildName = InstantiateHeadInfoPrefab(guildNamePrefab, headInfoPanel.transform);
@@ -111,6 +119,7 @@ public class UIHeadInfo : MonoBehaviour
             // Face the Panel to the Camera,  without a isFullVisible check 
             transform.forward = Camera.main.transform.forward;
 
+            goStunned.SetActive(false);
             goGuildName.SetActive(false);
             goHealthBar.SetActive(false);
 
@@ -135,6 +144,11 @@ public class UIHeadInfo : MonoBehaviour
 
         if (isNpc)
             questSignText.text = questSign;
+
+        if (isStunned)
+            goStunned.SetActive(true);
+        else
+            goStunned.SetActive(false);
 
         entityNameText.text = entityName;
         entityNameText.color = entityNameColor;

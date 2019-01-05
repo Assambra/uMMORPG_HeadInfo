@@ -25,5 +25,7 @@ public partial class Entity
     {
         if (headInfo != null)
             headInfo.EntityName = name;
+        if(headInfo != null)
+            headInfo.IsStunned = state == "STUNNED";
     }
 }

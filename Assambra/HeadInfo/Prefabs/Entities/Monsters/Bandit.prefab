@@ -369,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1282138066011110
 GameObject:
   m_ObjectHideFlags: 1
@@ -2508,8 +2508,8 @@ MonoBehaviour:
   currentSkill: -1
   _effectMount: {fileID: 4399983434644660}
   _gold: 0
-  nameOverlay: {fileID: 102930558559346816}
-  stunnedOverlay: {fileID: 102069110529178248}
+  nameOverlay: {fileID: 0}
+  stunnedOverlay: {fileID: 0}
   inSafeZone: 0
   moveProbability: 0.2
   moveDistance: 5
@@ -2702,8 +2702,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adjustmentHeadInfoPositionY: 0.4
   thisEntity: {fileID: 114065500523104884}
   headInfoPanel: {fileID: 1348247796578936}
+  questSignPrefab: {fileID: 0}
+  stunnedPrefab: {fileID: 1210692136199252, guid: b7f6a405288e864488577ed37d947c9f,
+    type: 2}
   entityNamePrefab: {fileID: 1103406604215184, guid: 122b3e6a24544db4c8f1301f218f6f69,
     type: 2}
   guildNamePrefab: {fileID: 1402474641100108, guid: 1ff01c37d7068b640a9661f53fe0be92,
@@ -2712,9 +2716,6 @@ MonoBehaviour:
     type: 2}
   headInfoPanelImage: {fileID: 114167263150189104}
   targetSprite: {fileID: 21300000, guid: 8335770f2b63ba54c980795b9849e16f, type: 3}
-  canvasHeadInfo: {fileID: 1722967456156670}
-  capsuleCollider: {fileID: 136534997775825184}
-  adjustmentHeadInfoPosition: 0.4
 --- !u!135 &135962456698608590
 SphereCollider:
   m_ObjectHideFlags: 1

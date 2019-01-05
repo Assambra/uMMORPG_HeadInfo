@@ -75,8 +75,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145714}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4.46, y: 9.715, z: 36.29}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 4000013256516898}
@@ -243,8 +243,8 @@ MonoBehaviour:
   currentSkill: -1
   _effectMount: {fileID: 4891480303071494}
   _gold: 0
-  nameOverlay: {fileID: 102000011676441226}
-  stunnedOverlay: {fileID: 102818769894314652}
+  nameOverlay: {fileID: 0}
+  stunnedOverlay: {fileID: 0}
   inSafeZone: 0
   questOverlay: {fileID: 10278332}
   welcome: How can I help you today?
@@ -530,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1094084426934862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2578,8 @@ MonoBehaviour:
   thisEntity: {fileID: 11437356}
   headInfoPanel: {fileID: 1647768778238852}
   questSignPrefab: {fileID: 1165195892822308, guid: a81c590c921476b45a5f6d1c80c9f04f,
+    type: 2}
+  stunnedPrefab: {fileID: 1210692136199252, guid: b7f6a405288e864488577ed37d947c9f,
     type: 2}
   entityNamePrefab: {fileID: 1103406604215184, guid: 122b3e6a24544db4c8f1301f218f6f69,
     type: 2}

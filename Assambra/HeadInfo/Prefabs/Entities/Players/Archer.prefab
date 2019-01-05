@@ -276,13 +276,17 @@ MonoBehaviour:
   currentSkill: -1
   _effectMount: {fileID: 4648377649292990}
   _gold: 0
-  nameOverlay: {fileID: 102403922260417398}
-  stunnedOverlay: {fileID: 102850382433440542}
+  nameOverlay: {fileID: 0}
+  stunnedOverlay: {fileID: 0}
   inSafeZone: 0
+  nameDefaultColor: {r: 1, g: 1, b: 1, a: 1}
+  nameOffenderColor: {r: 1, g: 0, b: 1, a: 1}
+  nameMurdererColor: {r: 1, g: 0, b: 0, a: 1}
+  namePartyColor: {r: 0.341, g: 0.965, b: 0.702, a: 1}
   chat: {fileID: 11481206}
   avatarCamera: {fileID: 20662726061508384}
   networkNavMeshAgent: {fileID: 114014746068147750}
-  guildOverlay: {fileID: 10296200}
+  guildOverlay: {fileID: 0}
   guildOverlayPrefix: '['
   guildOverlaySuffix: ']'
   nameOverlayDefaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1291,7 +1295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1640273116615734
 GameObject:
   m_ObjectHideFlags: 1
@@ -2849,8 +2853,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ea3b36d2411464885e7f4c811500ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adjustmentHeadInfoPositionY: 0.4
   thisEntity: {fileID: 11448894}
   headInfoPanel: {fileID: 1382533218652330}
+  questSignPrefab: {fileID: 0}
+  stunnedPrefab: {fileID: 1210692136199252, guid: b7f6a405288e864488577ed37d947c9f,
+    type: 2}
   entityNamePrefab: {fileID: 1103406604215184, guid: 122b3e6a24544db4c8f1301f218f6f69,
     type: 2}
   guildNamePrefab: {fileID: 1402474641100108, guid: 1ff01c37d7068b640a9661f53fe0be92,
@@ -2859,9 +2867,6 @@ MonoBehaviour:
     type: 2}
   headInfoPanelImage: {fileID: 114785565536154790}
   targetSprite: {fileID: 21300000, guid: 8335770f2b63ba54c980795b9849e16f, type: 3}
-  canvasHeadInfo: {fileID: 1450570887378282}
-  capsuleCollider: {fileID: 136955851342611990}
-  adjustmentHeadInfoPosition: 0.4
 --- !u!114 &114741553386820212
 MonoBehaviour:
   m_ObjectHideFlags: 1
