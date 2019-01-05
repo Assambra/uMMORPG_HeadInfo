@@ -8,12 +8,16 @@ public partial class Entity
     public UIHeadInfo headInfo;
     
     private Npc npc;
+    private Mount mount;
 
     void Awake_HeadInfo()
     {
         npc = gameObject.GetComponent<Npc>();
         if (npc != null)
             headInfo.IsNpc = true;
+        mount = gameObject.GetComponent<Mount>();
+        if (mount != null)
+            headInfo.IsMount = true;
     }
 
     void Update_HeadInfo()

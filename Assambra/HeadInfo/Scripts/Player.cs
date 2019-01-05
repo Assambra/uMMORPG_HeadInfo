@@ -3,6 +3,9 @@ using Mirror;
 
 public partial class Player
 {
+    [Header("Head Info Player")]
+    public string guildPrefix = "[";
+    public string guildSuffix = "]";
     public Color nameDefaultColor = Color.white;
     public Color nameOffenderColor = Color.magenta;
     public Color nameMurdererColor = Color.red;
@@ -81,7 +84,7 @@ public partial class Player
         }
 
         if (headInfo != null)
-            headInfo.GuildName = guildName != "" ? guildOverlayPrefix + guildName + guildOverlaySuffix : "";
+            headInfo.GuildName = guildName != "" ? guildPrefix + guildName + guildSuffix : "";
     }
 
     [Client]

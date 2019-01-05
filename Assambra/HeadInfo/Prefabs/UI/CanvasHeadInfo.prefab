@@ -102,18 +102,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisEntity: {fileID: 0}
+  adjustmentHeadInfoPositionY: 0.4
+  model3D: {fileID: 0}
   headInfoPanel: {fileID: 1927924242156492}
+  headInfoPanelImage: {fileID: 114136004748816400}
+  targetSprite: {fileID: 21300000, guid: 8335770f2b63ba54c980795b9849e16f, type: 3}
+  questSignPrefab: {fileID: 1165195892822308, guid: a81c590c921476b45a5f6d1c80c9f04f,
+    type: 2}
+  stunnedPrefab: {fileID: 1210692136199252, guid: b7f6a405288e864488577ed37d947c9f,
+    type: 2}
   entityNamePrefab: {fileID: 1103406604215184, guid: 122b3e6a24544db4c8f1301f218f6f69,
     type: 2}
   guildNamePrefab: {fileID: 1402474641100108, guid: 1ff01c37d7068b640a9661f53fe0be92,
     type: 2}
   healthBarPrefab: {fileID: 1273639247470100, guid: 32ff9475e14805444acf35be3ede425a,
     type: 2}
-  headInfoPanelImage: {fileID: 114136004748816400}
-  targetSprite: {fileID: 21300000, guid: 8335770f2b63ba54c980795b9849e16f, type: 3}
-  canvasHeadInfo: {fileID: 1877107548914676}
-  capsuleCollider: {fileID: 0}
-  adjustmentHeadInfoPosition: 0.4
 --- !u!114 &114534251369161480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224734733392018570

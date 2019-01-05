@@ -56,6 +56,10 @@ public class UIHeadInfo : MonoBehaviour
     /// </summary>
     public bool IsNpc { set { isNpc = value; } }
     /// <summary>
+    /// Set this to true for a mount entity
+    /// </summary>
+    public bool IsMount { set { isMount = value; } }
+    /// <summary>
     /// Whether the player health bar should always be displayed, default true
     /// </summary>
     public bool AlwaysShowHealth { set { alwaysShowHealth = value; } }
@@ -69,6 +73,7 @@ public class UIHeadInfo : MonoBehaviour
     private bool attackMode = false;
     private bool isLocalPlayer = false;
     private bool isNpc = false;
+    private bool isMount = false;
     private bool alwaysShowHealth = false;
 
     private NetworkManagerMMO networkManagerMMO;
@@ -118,12 +123,18 @@ public class UIHeadInfo : MonoBehaviour
         if(networkManagerMMO.state == NetworkState.Lobby)
         {
             // Set the Y position of the HeadInfo panel
-            scaleY = model3D.transform.localScale.y;
-            float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
-            canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
-
+            if(!isMount)
+            {
+                scaleY = model3D.transform.localScale.y;
+                float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
+                canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
+            }
+            
             // Face the Panel to the Camera,  without a isFullVisible check 
             transform.forward = Camera.main.transform.forward;
+
+            if (isMount)
+                goEntityName.SetActive(false);
 
             goStunned.SetActive(false);
             goGuildName.SetActive(false);
@@ -142,11 +153,14 @@ public class UIHeadInfo : MonoBehaviour
         isFullVisible = headInfoPanelRectTransform.IsVisibleFrom(Camera.main);
 
         // Set the Y position of the HeadInfo panel
-        if (scaleY != thisEntity.transform.localScale.y)
+        if(!isMount)
         {
-            scaleY = model3D.transform.localScale.y;
-            float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
-            canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
+            if (scaleY != thisEntity.transform.localScale.y)
+            {
+                scaleY = model3D.transform.localScale.y;
+                float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
+                canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
+            }
         }
 
         if (isNpc)
@@ -154,9 +168,11 @@ public class UIHeadInfo : MonoBehaviour
 
         goStunned.SetActive(isStunned);
 
-        entityNameText.text = entityName;
-        entityNameText.color = entityNameColor;
-
+        
+            entityNameText.text = entityName;
+            entityNameText.color = entityNameColor;
+       
+        
         if (guildName != "")
         {
             if(!goGuildName.activeSelf)
@@ -179,6 +195,9 @@ public class UIHeadInfo : MonoBehaviour
         if (selectMode)
         {
             headInfoPanelImage.sprite = targetSprite;
+
+            if (isMount)
+                goEntityName.SetActive(true);
 
             if (!alwaysShowHealth)
             {
@@ -208,6 +227,9 @@ public class UIHeadInfo : MonoBehaviour
     /// </summary>
     private void Clear()
     {
+        if (isMount)
+            goEntityName.SetActive(false);
+
         headInfoPanelImage.sprite = null;
         headInfoPanelImage.color = Color.clear;
 

@@ -36,6 +36,8 @@ v0.4
 	Now the panel position will automatically be adjusted to the entity size even during the runtime of the game, for example with buffs that change the size of the entity.
 	The status party, offender and murderer are now displayed in color as in the original uMMORPG.
 	The quest sign of the npc entities is now displayed via the head info.
-	Stunned is now displayed for all entities via head info(except Pet that will come in the next update).
+	Stunned is now displayed for all entities via head info.
 	Pets now show the owner's name via the Head Info.
 	All entities get a public variable to decide if they should permanently display the healthbar.
+	Mounts display the healthbar and name if they are selected.
+	Redone all prefabs und updating the documentation, tested with uMMORPG ver. 1.154.

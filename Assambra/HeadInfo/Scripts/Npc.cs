@@ -6,7 +6,7 @@ public partial class Npc
     {
         base.UpdateHeadInfo();
 
-        if (questOverlay != null)
+        if (headInfo != null)
         {
             // find local player (null while in character selection)
             if (Player.localPlayer != null)
