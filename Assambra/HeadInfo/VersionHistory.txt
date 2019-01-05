@@ -35,3 +35,4 @@ v0.3
 v0.4
 	Now the panel position will automatically be adjusted to the entity size even during the runtime of the game, for example with buffs that change the size of the entity.
 	The status party, offender and murderer are now displayed in color as in the original uMMORPG.
+	The quest sign of the npc entities is now displayed via the head info

@@ -6,12 +6,17 @@ public class UIHeadInfo : MonoBehaviour
     public float adjustmentHeadInfoPositionY = 0.4f;
     public Entity thisEntity;
     public GameObject headInfoPanel;
+    public GameObject questSignPrefab;
     public GameObject entityNamePrefab;
     public GameObject guildNamePrefab;
     public GameObject healthBarPrefab;
     public Image headInfoPanelImage;
     public Sprite targetSprite;
     
+    /// <summary>
+    /// The quest sign for npc entities
+    /// </summary>
+    public string QuestSign { set { questSign = value; } }
     /// <summary>
     /// The name of the Entity
     /// </summary>
@@ -37,26 +42,34 @@ public class UIHeadInfo : MonoBehaviour
     /// </summary>
     public bool IsPlayer { set { isPlayer = value; } }
     /// <summary>
+    /// Set this to true for a Npc entity
+    /// </summary>
+    public bool IsNpc { set { isNpc = value; } }
+    /// <summary>
     /// Whether the player health bar should always be displayed, default true
     /// </summary>
     public bool AlwaysShowPlayerHealth { set { alwaysShowPlayerHealth = value; } }
 
+    private string questSign = "";
     private string entityName = "";
     private Color entityNameColor = Color.white;
     private string guildName = "";
     private bool attackMode = false;
     private bool selectMode = false;
     private bool isPlayer = false;
+    private bool isNpc = false;
     private bool alwaysShowPlayerHealth = true;
 
     private NetworkManagerMMO networkManagerMMO;
     private RectTransform headInfoPanelRectTransform;
     private bool isFullVisible;
 
+    private GameObject goQuestSign;
     private GameObject goEntityName;
     private GameObject goGuildName;
     private GameObject goHealthBar;
 
+    private Text questSignText;
     private Text entityNameText;
     private Text guildNameText;
     private Slider healthBarSlider;
@@ -74,7 +87,11 @@ public class UIHeadInfo : MonoBehaviour
 
         headInfoPanelImage.sprite = null;
         headInfoPanelImage.color = Color.clear;
-
+        if (isNpc)
+        {
+            goQuestSign = InstantiateHeadInfoPrefab(questSignPrefab, headInfoPanel.transform.parent.gameObject.transform);
+            questSignText = goQuestSign.GetComponent<Text>();
+        }
         goEntityName = InstantiateHeadInfoPrefab(entityNamePrefab, headInfoPanel.transform);
         entityNameText = goEntityName.GetComponent<Text>();
         goGuildName = InstantiateHeadInfoPrefab(guildNamePrefab, headInfoPanel.transform);
@@ -115,6 +132,9 @@ public class UIHeadInfo : MonoBehaviour
             float headInfoPosition = (capsuleCollider.height + adjustmentHeadInfoPositionY) * scaleY;
             canvasHeadInfo.transform.position = new Vector3(thisEntity.transform.position.x, thisEntity.transform.position.y + headInfoPosition, thisEntity.transform.position.z);
         }
+
+        if (isNpc)
+            questSignText.text = questSign;
 
         entityNameText.text = entityName;
         entityNameText.color = entityNameColor;
